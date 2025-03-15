@@ -86,18 +86,18 @@ operandsList.forEach((element) => {
                     }
                     break;
                 };
-                case 'plus-minus' : {
-                    if (!minusFlag) {
-                        display.textContent = `-${display.textContent}`;
-                        minusFlag = 1;
-                    }
-                    else {
-                        display.textContent = display.textContent.slice(1);
-                        minusFlag = 0;
-                    }
-                    operand1 = -operand1;
-                    break;
-                };
+                // case 'plus-minus' : {
+                //     if (!minusFlag) {
+                //         display.textContent = `-${display.textContent}`;
+                //         minusFlag = 1;
+                //     }
+                //     else {
+                //         display.textContent = display.textContent.slice(1);
+                //         minusFlag = 0;
+                //     }
+                //     operand1 = -operand1;
+                //     break;
+                // };
             }
         }
         else if (operatorFlag == 1 || operatorFlag == 2) {
@@ -119,18 +119,18 @@ operandsList.forEach((element) => {
                     }
                     break;
                 };
-                case 'plus-minus' : {
-                    if (!minusFlag) {
-                        display.textContent = `-${display.textContent}`;
-                        minusFlag = 1;
-                    }
-                    else {
-                        display.textContent = display.textContent.slice(1);
-                        minusFlag = 0;
-                    }
-                    operand2 = -operand2;
-                    break;
-                };
+                // case 'plus-minus' : {
+                //     if (!minusFlag) {
+                //         display.textContent = `-${display.textContent}`;
+                //         minusFlag = 1;
+                //     }
+                //     else {
+                //         display.textContent = display.textContent.slice(1);
+                //         minusFlag = 0;
+                //     }
+                //     operand2 = -operand2;
+                //     break;
+                // };
             }
         }
     });
@@ -205,18 +205,18 @@ document.addEventListener('keydown', (event) => {
                 }
                 break;
             };
-            case '_' : {
-                if (!minusFlag) {
-                    display.textContent = `-${display.textContent}`;
-                    minusFlag = 1;
-                }
-                else {
-                    display.textContent = display.textContent.slice(1);
-                    minusFlag = 0;
-                }
-                operand1 = -operand1;
-                break;
-            };
+            // case '_' : {
+            //     if (!minusFlag) {
+            //         display.textContent = `-${display.textContent}`;
+            //         minusFlag = 1;
+            //     }
+            //     else {
+            //         display.textContent = display.textContent.slice(1);
+            //         minusFlag = 0;
+            //     }
+            //     operand1 = -operand1;
+            //     break;
+            // };
             case '+': display.textContent = ""; operator = '+'; operatorFlag = 1; break;
             case '-': display.textContent = ""; operator = '-'; operatorFlag = 1; break;
             case '*': display.textContent = ""; operator = '*'; operatorFlag = 1; break;
@@ -242,18 +242,18 @@ document.addEventListener('keydown', (event) => {
                 }
                 break;
             };
-            case '_' : {
-                if (!minusFlag) {
-                    display.textContent = `-${display.textContent}`;
-                    minusFlag = 1;
-                }
-                else {
-                    display.textContent = display.textContent.slice(1);
-                    minusFlag = 0;
-                }
-                operand2 = -operand2;
-                break;
-            };
+            // case '_' : {
+            //     if (!minusFlag) {
+            //         display.textContent = `-${display.textContent}`;
+            //         minusFlag = 1;
+            //     }
+            //     else {
+            //         display.textContent = display.textContent.slice(1);
+            //         minusFlag = 0;
+            //     }
+            //     operand2 = -operand2;
+            //     break;
+            // };
             case '+': display.textContent = ""; operator = '+'; operatorFlag = 1; break;
             case '-': display.textContent = ""; operator = '-'; operatorFlag = 1; break;
             case '*': display.textContent = ""; operator = '*'; operatorFlag = 1; break;
@@ -279,18 +279,18 @@ document.addEventListener('keydown', (event) => {
                 }
                 break;
             };
-            case '_' : {
-                if (!minusFlag) {
-                    display.textContent = `-${display.textContent}`;
-                    minusFlag = 1;
-                }
-                else {
-                    display.textContent = display.textContent.slice(1);
-                    minusFlag = 0;
-                }
-                operand2 = -operand2;
-                break;
-            };
+            // case '_' : {
+            //     if (!minusFlag) {
+            //         display.textContent = `-${display.textContent}`;
+            //         minusFlag = 1;
+            //     }
+            //     else {
+            //         display.textContent = display.textContent.slice(1);
+            //         minusFlag = 0;
+            //     }
+            //     operand2 = -operand2;
+            //     break;
+            // };
             case '+': {
                 operand1 = operate(operand1, operator, operand2); display.textContent = operand1; operator = '+'; 
                 operatorFlag = 1; break;
