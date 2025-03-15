@@ -95,6 +95,7 @@ operandsList.forEach((element) => {
                         display.textContent = display.textContent.slice(1);
                         minusFlag = 0;
                     }
+                    operand1 = -operand1;
                     break;
                 };
             }
@@ -127,6 +128,7 @@ operandsList.forEach((element) => {
                         display.textContent = display.textContent.slice(1);
                         minusFlag = 0;
                     }
+                    operand2 = -operand2;
                     break;
                 };
             }
@@ -169,3 +171,146 @@ operatorsList.forEach((element) => {
     });
 });
 
+
+//for capturing keyboard presses :
+
+//keydown is used instead of keypress, because backspace and delete are not fired in keypress
+
+document.addEventListener('keydown', (event) => {  
+    if (event.key == 'Delete') {
+        operand1 = operand2 = operatorFlag = 0;
+        operator = '';
+        display.textContent = '';
+    }
+    else if (operatorFlag == 0) {
+        switch (event.key) {
+            case '1' : display.textContent += '1'; operand1 = operand1*10 + 1;break;
+            case '2' : display.textContent += '2'; operand1 = operand1*10 + 2; break;
+            case '3' : display.textContent += '3'; operand1 = operand1*10 + 3; break;
+            case '4' : display.textContent += '4'; operand1 = operand1*10 + 4; break;
+            case '5' : display.textContent += '5'; operand1 = operand1*10 + 5; break;
+            case '6' : display.textContent += '6'; operand1 = operand1*10 + 6; break;
+            case '7' : display.textContent += '7'; operand1 = operand1*10 + 7; break;
+            case '8' : display.textContent += '8'; operand1 = operand1*10 + 8; break;
+            case '9' : display.textContent += '9'; operand1 = operand1*10 + 9; break;
+            case '0' : display.textContent += '0'; operand1 = operand1*10 + 0; break;
+            case '.' : {
+                if (display.textContent === "") {
+                    display.textContent += '0.';
+                    dotFlag = 1;
+                }
+                else if (!dotFlag) {
+                    display.textContent += '.';
+                    dotFlag = 1;
+                }
+                break;
+            };
+            case '_' : {
+                if (!minusFlag) {
+                    display.textContent = `-${display.textContent}`;
+                    minusFlag = 1;
+                }
+                else {
+                    display.textContent = display.textContent.slice(1);
+                    minusFlag = 0;
+                }
+                operand1 = -operand1;
+                break;
+            };
+            case '+': display.textContent = ""; operator = '+'; operatorFlag = 1; break;
+            case '-': display.textContent = ""; operator = '-'; operatorFlag = 1; break;
+            case '*': display.textContent = ""; operator = '*'; operatorFlag = 1; break;
+            case '/': display.textContent = ""; operator = '/'; operatorFlag = 1; break;
+        };     
+    }
+    else if (operatorFlag == 1) {
+        switch (event.key) {
+            case '1' : display.textContent += '1'; operand2 = operand2*10 + 1; operatorFlag = 2; break;
+            case '2' : display.textContent += '2'; operand2 = operand2*10 + 2; operatorFlag = 2; break;
+            case '3' : display.textContent += '3'; operand2 = operand2*10 + 3; operatorFlag = 2; break;
+            case '4' : display.textContent += '4'; operand2 = operand2*10 + 4; operatorFlag = 2; break;
+            case '5' : display.textContent += '5'; operand2 = operand2*10 + 5; operatorFlag = 2; break;
+            case '6' : display.textContent += '6'; operand2 = operand2*10 + 6; operatorFlag = 2; break;
+            case '7' : display.textContent += '7'; operand2 = operand2*10 + 7; operatorFlag = 2; break;
+            case '8' : display.textContent += '8'; operand2 = operand2*10 + 8; operatorFlag = 2; break;
+            case '9' : display.textContent += '9'; operand2 = operand2*10 + 9; operatorFlag = 2; break;
+            case '0' : display.textContent += '0'; operand2 = operand2*10 + 0; operatorFlag = 2; break;
+            case '.' : {
+                if (!dotFlag) {
+                    display.textContent += '.';
+                    dotFlag = 1;
+                }
+                break;
+            };
+            case '_' : {
+                if (!minusFlag) {
+                    display.textContent = `-${display.textContent}`;
+                    minusFlag = 1;
+                }
+                else {
+                    display.textContent = display.textContent.slice(1);
+                    minusFlag = 0;
+                }
+                operand2 = -operand2;
+                break;
+            };
+            case '+': display.textContent = ""; operator = '+'; operatorFlag = 1; break;
+            case '-': display.textContent = ""; operator = '-'; operatorFlag = 1; break;
+            case '*': display.textContent = ""; operator = '*'; operatorFlag = 1; break;
+            case '/': display.textContent = ""; operator = '/'; operatorFlag = 1; break;
+        }
+    }
+    else if (operatorFlag == 2) {
+        switch (event.key) {
+            case '1' : display.textContent += '1'; operand2 = operand2*10 + 1; operatorFlag = 2; break;
+            case '2' : display.textContent += '2'; operand2 = operand2*10 + 2; operatorFlag = 2; break;
+            case '3' : display.textContent += '3'; operand2 = operand2*10 + 3; operatorFlag = 2; break;
+            case '4' : display.textContent += '4'; operand2 = operand2*10 + 4; operatorFlag = 2; break;
+            case '5' : display.textContent += '5'; operand2 = operand2*10 + 5; operatorFlag = 2; break;
+            case '6' : display.textContent += '6'; operand2 = operand2*10 + 6; operatorFlag = 2; break;
+            case '7' : display.textContent += '7'; operand2 = operand2*10 + 7; operatorFlag = 2; break;
+            case '8' : display.textContent += '8'; operand2 = operand2*10 + 8; operatorFlag = 2; break;
+            case '9' : display.textContent += '9'; operand2 = operand2*10 + 9; operatorFlag = 2; break;
+            case '0' : display.textContent += '0'; operand2 = operand2*10 + 0; operatorFlag = 2; break;
+            case '.' : {
+                if (!dotFlag) {
+                    display.textContent += '.';
+                    dotFlag = 1;
+                }
+                break;
+            };
+            case '_' : {
+                if (!minusFlag) {
+                    display.textContent = `-${display.textContent}`;
+                    minusFlag = 1;
+                }
+                else {
+                    display.textContent = display.textContent.slice(1);
+                    minusFlag = 0;
+                }
+                operand2 = -operand2;
+                break;
+            };
+            case '+': {
+                operand1 = operate(operand1, operator, operand2); display.textContent = operand1; operator = '+'; 
+                operatorFlag = 1; break;
+            }
+            case '-': {
+                operand1 = operate(operand1, operator, operand2); display.textContent = operand1; operator = '-'; 
+                operatorFlag = 1; break;
+            }
+            case '*': {
+                operand1 = operate(operand1, operator, operand2); display.textContent = operand1; operator = '*'; 
+                operatorFlag = 1; break;
+            }
+            case '/': {
+                operand1 = operate(operand1, operator, operand2); display.textContent = operand1; operator = '/'; 
+                operatorFlag = 1; break;
+            }
+            case 'Enter': {
+                operand1 = operate(operand1, operator, operand2); display.textContent = operand1; 
+                operatorFlag = 0; operand2 = 0; break;
+            }
+        }
+    }
+});
