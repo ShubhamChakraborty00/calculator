@@ -19,21 +19,35 @@ const operatorsList = Array.from(document.querySelectorAll(".operator"));
 const clearBtn = document.querySelector("#clear");
 
 const display = document.querySelector(".display");
+const sideDisplay = document.querySelector(".sec-display");
 
 let operand1 = 0, operand2 = 0, operator = '';
 
-let dotFlag = 0, minusFlag = 0, operatorFlag = 0;
+let result = 0;
+let dotFlag = 0;
+let stateFlag = 0;
 
-/*operatorFlag = 0 : no operator has been used
+/* stateFlag marks the current state of the calculator, there are 5 total states : 0, 1, 2, 3, 4
 
-opeartorFlag = 1 : one operator has been used but no number has been entered after, if another operator is used now, 
-operator will be changed
+0 - initial state, no number or operator has been entered. Here if a number is entered we go to state 1, if an operator is 
+entered it is neglected. main display and side display show nothing in this state.
 
-operatorFlag = 2 : one operator has been used and another number has been entered, now if any operator is used, it will : 
-- display the result and store it as operand1
-- change current operator to whatever operator was entered last
-- set operatorFlag to 1
-*/
+1 - a number has been entered (operand 1), here main display shows the number. side display shows nothing. if an operator is 
+entered here we go to state 2.
+
+2 - an operator has been entered. here main display shows operand 1. side display shows the number and the current operator. here 
+if another number is entered we go to state 3. if another operand is entered, we stay in same state only current operator is 
+updated.
+
+3 - another number (operand 2) has been entered. from here we can go to 2 different states : 1 and 4. If here an operator is 
+entered we go to state 2. The result is displayed in the main display and stored as operand 1 and the operator which was entered 
+is stored as current operator. If however, equals is entered, then we go to state 4.
+
+4 - equals was entered from state 3. Here the display shows the result and the side display shows the entire equation. From here
+if an operator is entered we go to state 2. But if an operand is entered we go to state 1.
+
+if at any point, clear or Delete is entered, we go to state 0.
+ */
 
 allButtonsList.forEach((element) => {
     element.addEventListener('click', (event) => {
@@ -59,13 +73,12 @@ allButtonsList.forEach((element) => {
     })
 })
 
-//for capturing keyboard presses :
 
 //keydown is used instead of keypress, because backspace and delete are not fired in keypress
 
 document.addEventListener('keydown', (event) => {  
     if (event.key == 'Delete') {
-        operand1 = operand2 = operatorFlag = 0;
+        operand1 = operand2 = stateFlag = 0;
         operator = '';
         display.textContent = '';
     }
