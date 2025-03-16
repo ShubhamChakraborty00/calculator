@@ -27,7 +27,7 @@ let result = 0;
 let dotFlag = 0;
 let stateFlag = 0;
 
-/* stateFlag marks the current state of the calculator, there are 5 total states : 0, 1, 2, 3, 4
+/* stateFlag marks the current state of the calculator, there are 6 total states : 0, 1, 2, 3, 4, 5
 
 0 - initial state, no number or operator has been entered. Here if a number is entered we go to state 1, if an operator is 
 entered it is neglected. main display and side display show nothing in this state.
@@ -46,7 +46,11 @@ is stored as current operator. If however, equals is entered, then we go to stat
 4 - equals was entered from state 3. Here the display shows the result and the side display shows the entire equation. From here
 if an operator is entered we go to state 2. But if an operand is entered we go to state 1.
 
+5 - we enter this state when an error occurs. from here if an operator is entered, we stay in same state. But if an operand is 
+entered we go to state 1.
+
 if at any point, clear or Delete is entered, we go to state 0.
+if at any point, we encounter a mathematical error, we go to state 5
  */
 
 allButtonsList.forEach((element) => {
@@ -77,7 +81,7 @@ allButtonsList.forEach((element) => {
 
 document.addEventListener('keydown', (event) => {  
     if (event.key == 'Delete') {
-        operand1 = operand2 = stateFlag = 0;
+        result = operand1 = operand2 = stateFlag = 0;
         operator = '';
         updateDisplay();
     }
@@ -173,14 +177,36 @@ document.addEventListener('keydown', (event) => {
         }
         updateDisplay();
     }
+    else if (stateFlag == 5) {
+        switch (event.key) {
+            case '1': operand1 = 1; stateFlag = 1; result = 0; break;
+            case '2': operand1 = 2; stateFlag = 1; result = 0; break;
+            case '3': operand1 = 3; stateFlag = 1; result = 0; break;
+            case '4': operand1 = 4; stateFlag = 1; result = 0; break;
+            case '5': operand1 = 5; stateFlag = 1; result = 0; break;
+            case '6': operand1 = 6; stateFlag = 1; result = 0; break;
+            case '7': operand1 = 7; stateFlag = 1; result = 0; break;
+            case '8': operand1 = 8; stateFlag = 1; result = 0; break;
+            case '9': operand1 = 9; stateFlag = 1; result = 0; break;
+            case '0': operand1 = 0; stateFlag = 1; result = 0; break;
+        }
+        updateDisplay();
+    }
 });
 
 function updateDisplay () {
-    switch (stateFlag) {
-        case 0: display.textContent = ""; secDisplay.textContent = ""; break;
-        case 1: display.textContent = operand1; secDisplay.textContent = ""; break;
-        case 2: display.textContent = operand1; secDisplay.textContent = `${operand1} ${operator}`; break;
-        case 3: display.textContent = operand2; secDisplay.textContent = `${operand1} ${operator}`; break;
-        case 4: display.textContent = result; secDisplay.textContent = `${operand1} ${operator} ${operand2} =`; break;
+    if (operand1 == Infinity || operand1 == undefined || result == Infinity || result == undefined) {
+        display.textContent = "ERROR";
+        secDisplay.textContent = "";
+        stateFlag = 5;
+    }
+    else {
+        switch (stateFlag) {
+            case 0: display.textContent = ""; secDisplay.textContent = ""; break;
+            case 1: display.textContent = operand1; secDisplay.textContent = ""; break;
+            case 2: display.textContent = operand1; secDisplay.textContent = `${operand1} ${operator}`; break;
+            case 3: display.textContent = operand2; secDisplay.textContent = `${operand1} ${operator}`; break;
+            case 4: display.textContent = result; secDisplay.textContent = `${operand1} ${operator} ${operand2} =`; break;
+        }
     }
 }
