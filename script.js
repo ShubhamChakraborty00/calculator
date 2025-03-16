@@ -1,33 +1,15 @@
-console.log("test");
-
-function add(x, y) {
-    return x+y;
-}
-
-function subtract(x, y) {
-    return x-y;
-}
-
-function multiply(x, y) {
-    return x*y;
-}
-
-function divide(x, y) {
-    return x/y;
-}
-
 function operate(operand1, operator, operand2) {
     if (operator === '+') {
-        return add(operand1, operand2);
+        return operand1 + operand2;
     }
     else if (operator === '-') {
-        return subtract(operand1, operand2);
+        return operand1 - operand2;
     }
     if (operator === '*') {
-        return multiply(operand1, operand2);
+        return operand1 * operand2;
     }
     if (operator === '/') {
-        return divide(operand1, operand2);
+        return operand1 / operand2;
     }
 }
 
@@ -54,84 +36,37 @@ operatorFlag = 2 : one operator has been used and another number has been entere
 
 
 clearBtn.addEventListener('click', (event) => {
-    operand1 = operand2 = operatorFlag = 0;
-    operator = '';
-    display.textContent = '';
+    document.dispatchEvent(new KeyboardEvent('keydown', {'key' : 'Delete'}));
 })
 
 
 operandsList.forEach((element) => {
     element.addEventListener('click', (event) => {
         
-        if (operatorFlag == 0) {
-            switch (element.id) {
-                case 'one' : display.textContent += '1'; operand1 = operand1*10 + 1;break;
-                case 'two' : display.textContent += '2'; operand1 = operand1*10 + 2; break;
-                case 'three' : display.textContent += '3'; operand1 = operand1*10 + 3; break;
-                case 'four' : display.textContent += '4'; operand1 = operand1*10 + 4; break;
-                case 'five' : display.textContent += '5'; operand1 = operand1*10 + 5; break;
-                case 'six' : display.textContent += '6'; operand1 = operand1*10 + 6; break;
-                case 'seven' : display.textContent += '7'; operand1 = operand1*10 + 7; break;
-                case 'eight' : display.textContent += '8'; operand1 = operand1*10 + 8; break;
-                case 'nine' : display.textContent += '9'; operand1 = operand1*10 + 9; break;
-                case 'zero' : display.textContent += '0'; operand1 = operand1*10 + 0; break;
-                case 'dot' : {
-                    if (display.textContent === "") {
-                        display.textContent += '0.';
-                        dotFlag = 1;
-                    }
-                    else if (!dotFlag) {
-                        display.textContent += '.';
-                        dotFlag = 1;
-                    }
-                    break;
-                };
-                // case 'plus-minus' : {
-                //     if (!minusFlag) {
-                //         display.textContent = `-${display.textContent}`;
-                //         minusFlag = 1;
-                //     }
-                //     else {
-                //         display.textContent = display.textContent.slice(1);
-                //         minusFlag = 0;
-                //     }
-                //     operand1 = -operand1;
-                //     break;
-                // };
-            }
-        }
-        else if (operatorFlag == 1 || operatorFlag == 2) {
-            switch (element.id) {
-                case 'one' : display.textContent += '1'; operand2 = operand2*10 + 1; operatorFlag = 2; break;
-                case 'two' : display.textContent += '2'; operand2 = operand2*10 + 2; operatorFlag = 2; break;
-                case 'three' : display.textContent += '3'; operand2 = operand2*10 + 3; operatorFlag = 2; break;
-                case 'four' : display.textContent += '4'; operand2 = operand2*10 + 4; operatorFlag = 2; break;
-                case 'five' : display.textContent += '5'; operand2 = operand2*10 + 5; operatorFlag = 2; break;
-                case 'six' : display.textContent += '6'; operand2 = operand2*10 + 6; operatorFlag = 2; break;
-                case 'seven' : display.textContent += '7'; operand2 = operand2*10 + 7; operatorFlag = 2; break;
-                case 'eight' : display.textContent += '8'; operand2 = operand2*10 + 8; operatorFlag = 2; break;
-                case 'nine' : display.textContent += '9'; operand2 = operand2*10 + 9; operatorFlag = 2; break;
-                case 'zero' : display.textContent += '0'; operand2 = operand2*10 + 0; operatorFlag = 2; break;
-                case 'dot' : {
-                    if (!dotFlag) {
-                        display.textContent += '.';
-                        dotFlag = 1;
-                    }
-                    break;
-                };
-                // case 'plus-minus' : {
-                //     if (!minusFlag) {
-                //         display.textContent = `-${display.textContent}`;
-                //         minusFlag = 1;
-                //     }
-                //     else {
-                //         display.textContent = display.textContent.slice(1);
-                //         minusFlag = 0;
-                //     }
-                //     operand2 = -operand2;
-                //     break;
-                // };
-            }
+        switch (element.id) {
+            case 'one' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '1'})); break;
+            case 'two' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '2'})); break;
+            case 'three' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '3'})); break;
+            case 'four' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '4'})); break;
+            case 'five' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '5'})); break;
+            case 'six' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '6'})); break;
+            case 'seven' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '7'})); break;
+            case 'eight' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '8'})); break;
+            case 'nine' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '9'})); break;
+            case 'zero' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '0'})); break;
+            case 'dot' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '.'})); break;
+            // case 'plus-minus' : {
+            //     if (!minusFlag) {
+            //         display.textContent = `-${display.textContent}`;
+            //         minusFlag = 1;
+            //     }
+            //     else {
+            //         display.textContent = display.textContent.slice(1);
+            //         minusFlag = 0;
+            //     }
+            //     operand1 = -operand1;
+            //     break;
+            // };
         }
     });
 });
@@ -139,36 +74,14 @@ operandsList.forEach((element) => {
 
 operatorsList.forEach((element) => {
     element.addEventListener('click', (event) => {
-        if (operatorFlag == 0 || operatorFlag == 1){
-            switch (element.id) {
-                case 'plus': operator = '+'; break;
-                case 'subtract': operator = '-'; break;
-                case 'multiply': operator = '*'; break;
-                case 'divide': operator = '/';  break;
-            }
-            display.textContent = ""
-            operatorFlag = 1;
+        switch (element.id) {
+            case 'plus': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '+'})); break;
+            case 'subtract': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '-'})); break;
+            case 'multiply': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '*'})); break;
+            case 'divide': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '/'}));  break;
+            case 'equals': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : 'Enter'}));  break;
         }
-        else if (operatorFlag == 2){
-            operand1 = operate(operand1, operator, operand2)
-            switch (element.id) {
-                case 'plus': operator = '+'; break;
-                case 'subtract': operator = '-'; break;
-                case 'multiply': operator = '*'; break;
-                case 'divide': operator = '/'; break;
-                case 'equals': operatorFlag = 1; operand2 = 0; break;     
-                //If equals is used then it means we have one number and no operands
-            }
-            if (operand1 === Infinity) {
-                display.textContent = `Hello?`;
-
-            }
-            else {
-                display.textContent = `${operand1}`;
-            }
-            --operatorFlag;
-        }
-    });
+    })
 });
 
 
