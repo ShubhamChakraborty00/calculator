@@ -35,12 +35,6 @@ operatorFlag = 2 : one operator has been used and another number has been entere
 - set operatorFlag to 1
 */
 
-
-// clearBtn.addEventListener('click', (event) => {
-//     document.dispatchEvent(new KeyboardEvent('keydown', {'key' : 'Delete'}));
-// })
-
-
 allButtonsList.forEach((element) => {
     element.addEventListener('click', (event) => {
         switch (element.id) {
@@ -64,56 +58,6 @@ allButtonsList.forEach((element) => {
         }
     })
 })
-
-// operandsList.forEach((element) => {
-//     element.addEventListener('click', (event) => {
-        
-//         switch (element.id) {
-//             case 'one' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '1'})); break;
-//             case 'two' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '2'})); break;
-//             case 'three' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '3'})); break;
-//             case 'four' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '4'})); break;
-//             case 'five' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '5'})); break;
-//             case 'six' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '6'})); break;
-//             case 'seven' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '7'})); break;
-//             case 'eight' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '8'})); break;
-//             case 'nine' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '9'})); break;
-//             case 'zero' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '0'})); break;
-//             case 'dot' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '.'})); break;
-//             // case 'plus-minus' : {
-//             //     if (!minusFlag) {
-//             //         display.textContent = `-${display.textContent}`;
-//             //         minusFlag = 1;
-//             //     }
-//             //     else {
-//             //         display.textContent = display.textContent.slice(1);
-//             //         minusFlag = 0;
-//             //     }
-//             //     operand1 = -operand1;
-//             //     break;
-//             // };
-//             case 'plus': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '+'})); break;
-//             case 'subtract': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '-'})); break;
-//             case 'multiply': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '*'})); break;
-//             case 'divide': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '/'}));  break;
-//             case 'equals': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : 'Enter'}));  break;
-//         }
-//     });
-// });
-
-
-// operatorsList.forEach((element) => {
-//     element.addEventListener('click', (event) => {
-//         switch (element.id) {
-//             case 'plus': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '+'})); break;
-//             case 'subtract': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '-'})); break;
-//             case 'multiply': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '*'})); break;
-//             case 'divide': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '/'}));  break;
-//             case 'equals': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : 'Enter'}));  break;
-//         }
-//     })
-// });
-
 
 //for capturing keyboard presses :
 
@@ -148,18 +92,6 @@ document.addEventListener('keydown', (event) => {
                 }
                 break;
             };
-            // case '_' : {
-            //     if (!minusFlag) {
-            //         display.textContent = `-${display.textContent}`;
-            //         minusFlag = 1;
-            //     }
-            //     else {
-            //         display.textContent = display.textContent.slice(1);
-            //         minusFlag = 0;
-            //     }
-            //     operand1 = -operand1;
-            //     break;
-            // };
             case '+': display.textContent = ""; operator = '+'; operatorFlag = 1; break;
             case '-': display.textContent = ""; operator = '-'; operatorFlag = 1; break;
             case '*': display.textContent = ""; operator = '*'; operatorFlag = 1; break;
@@ -185,18 +117,6 @@ document.addEventListener('keydown', (event) => {
                 }
                 break;
             };
-            // case '_' : {
-            //     if (!minusFlag) {
-            //         display.textContent = `-${display.textContent}`;
-            //         minusFlag = 1;
-            //     }
-            //     else {
-            //         display.textContent = display.textContent.slice(1);
-            //         minusFlag = 0;
-            //     }
-            //     operand2 = -operand2;
-            //     break;
-            // };
             case '+': display.textContent = ""; operator = '+'; operatorFlag = 1; break;
             case '-': display.textContent = ""; operator = '-'; operatorFlag = 1; break;
             case '*': display.textContent = ""; operator = '*'; operatorFlag = 1; break;
@@ -222,18 +142,6 @@ document.addEventListener('keydown', (event) => {
                 }
                 break;
             };
-            // case '_' : {
-            //     if (!minusFlag) {
-            //         display.textContent = `-${display.textContent}`;
-            //         minusFlag = 1;
-            //     }
-            //     else {
-            //         display.textContent = display.textContent.slice(1);
-            //         minusFlag = 0;
-            //     }
-            //     operand2 = -operand2;
-            //     break;
-            // };
             case '+': {
                 operand1 = operate(operand1, operator, operand2); display.textContent = operand1; operator = '+'; 
                 operatorFlag = 1; break;
