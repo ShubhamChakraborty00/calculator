@@ -19,7 +19,7 @@ const operatorsList = Array.from(document.querySelectorAll(".operator"));
 const clearBtn = document.querySelector("#clear");
 
 const display = document.querySelector(".display");
-const sideDisplay = document.querySelector(".sec-display");
+const secDisplay = document.querySelector(".sec-display");
 
 let operand1 = 0, operand2 = 0, operator = '';
 
@@ -62,7 +62,6 @@ allButtonsList.forEach((element) => {
             case 'eight' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '8'})); break;
             case 'nine' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '9'})); break;
             case 'zero' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '0'})); break;
-            case 'dot' : document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '.'})); break;
             case 'plus': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '+'})); break;
             case 'subtract': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '-'})); break;
             case 'multiply': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '*'})); break;
@@ -80,101 +79,108 @@ document.addEventListener('keydown', (event) => {
     if (event.key == 'Delete') {
         operand1 = operand2 = stateFlag = 0;
         operator = '';
-        display.textContent = '';
+        updateDisplay();
     }
-    else if (operatorFlag == 0) {
+    else if (stateFlag == 0) {
         switch (event.key) {
-            case '1' : display.textContent += '1'; operand1 = operand1*10 + 1;break;
-            case '2' : display.textContent += '2'; operand1 = operand1*10 + 2; break;
-            case '3' : display.textContent += '3'; operand1 = operand1*10 + 3; break;
-            case '4' : display.textContent += '4'; operand1 = operand1*10 + 4; break;
-            case '5' : display.textContent += '5'; operand1 = operand1*10 + 5; break;
-            case '6' : display.textContent += '6'; operand1 = operand1*10 + 6; break;
-            case '7' : display.textContent += '7'; operand1 = operand1*10 + 7; break;
-            case '8' : display.textContent += '8'; operand1 = operand1*10 + 8; break;
-            case '9' : display.textContent += '9'; operand1 = operand1*10 + 9; break;
-            case '0' : display.textContent += '0'; operand1 = operand1*10 + 0; break;
-            case '.' : {
-                if (display.textContent === "") {
-                    display.textContent += '0.';
-                    dotFlag = 1;
-                }
-                else if (!dotFlag) {
-                    display.textContent += '.';
-                    dotFlag = 1;
-                }
-                break;
-            };
-            case '+': display.textContent = ""; operator = '+'; operatorFlag = 1; break;
-            case '-': display.textContent = ""; operator = '-'; operatorFlag = 1; break;
-            case '*': display.textContent = ""; operator = '*'; operatorFlag = 1; break;
-            case '/': display.textContent = ""; operator = '/'; operatorFlag = 1; break;
-        };     
+            case '1' : operand1 = 1; ++stateFlag; break;
+            case '2' : operand1 = 2; ++stateFlag; break;
+            case '3' : operand1 = 3; ++stateFlag; break;
+            case '4' : operand1 = 4; ++stateFlag; break;
+            case '5' : operand1 = 5; ++stateFlag; break;
+            case '6' : operand1 = 6; ++stateFlag; break;
+            case '7' : operand1 = 7; ++stateFlag; break;
+            case '8' : operand1 = 8; ++stateFlag; break;
+            case '9' : operand1 = 9; ++stateFlag; break;
+            case '0' : operand1 = 0; ++stateFlag; break;
+        };
+        updateDisplay();
     }
-    else if (operatorFlag == 1) {
+    else if (stateFlag == 1) {
         switch (event.key) {
-            case '1' : display.textContent += '1'; operand2 = operand2*10 + 1; operatorFlag = 2; break;
-            case '2' : display.textContent += '2'; operand2 = operand2*10 + 2; operatorFlag = 2; break;
-            case '3' : display.textContent += '3'; operand2 = operand2*10 + 3; operatorFlag = 2; break;
-            case '4' : display.textContent += '4'; operand2 = operand2*10 + 4; operatorFlag = 2; break;
-            case '5' : display.textContent += '5'; operand2 = operand2*10 + 5; operatorFlag = 2; break;
-            case '6' : display.textContent += '6'; operand2 = operand2*10 + 6; operatorFlag = 2; break;
-            case '7' : display.textContent += '7'; operand2 = operand2*10 + 7; operatorFlag = 2; break;
-            case '8' : display.textContent += '8'; operand2 = operand2*10 + 8; operatorFlag = 2; break;
-            case '9' : display.textContent += '9'; operand2 = operand2*10 + 9; operatorFlag = 2; break;
-            case '0' : display.textContent += '0'; operand2 = operand2*10 + 0; operatorFlag = 2; break;
-            case '.' : {
-                if (!dotFlag) {
-                    display.textContent += '.';
-                    dotFlag = 1;
-                }
-                break;
-            };
-            case '+': display.textContent = ""; operator = '+'; operatorFlag = 1; break;
-            case '-': display.textContent = ""; operator = '-'; operatorFlag = 1; break;
-            case '*': display.textContent = ""; operator = '*'; operatorFlag = 1; break;
-            case '/': display.textContent = ""; operator = '/'; operatorFlag = 1; break;
+            case '1' : operand1 = operand1*10 + 1; break;
+            case '2' : operand1 = operand1*10 + 2; break;
+            case '3' : operand1 = operand1*10 + 3; break;
+            case '4' : operand1 = operand1*10 + 4; break;
+            case '5' : operand1 = operand1*10 + 5; break;
+            case '6' : operand1 = operand1*10 + 6; break;
+            case '7' : operand1 = operand1*10 + 7; break;
+            case '8' : operand1 = operand1*10 + 8; break;
+            case '9' : operand1 = operand1*10 + 9; break;
+            case '0' : operand1 = operand1*10 + 0; break;
+            case '+': 
+            case '-': 
+            case '*': 
+            case '/': operator = event.key; stateFlag = 2; break;
         }
+        updateDisplay();
     }
-    else if (operatorFlag == 2) {
+    else if (stateFlag == 2) {
         switch (event.key) {
-            case '1' : display.textContent += '1'; operand2 = operand2*10 + 1; operatorFlag = 2; break;
-            case '2' : display.textContent += '2'; operand2 = operand2*10 + 2; operatorFlag = 2; break;
-            case '3' : display.textContent += '3'; operand2 = operand2*10 + 3; operatorFlag = 2; break;
-            case '4' : display.textContent += '4'; operand2 = operand2*10 + 4; operatorFlag = 2; break;
-            case '5' : display.textContent += '5'; operand2 = operand2*10 + 5; operatorFlag = 2; break;
-            case '6' : display.textContent += '6'; operand2 = operand2*10 + 6; operatorFlag = 2; break;
-            case '7' : display.textContent += '7'; operand2 = operand2*10 + 7; operatorFlag = 2; break;
-            case '8' : display.textContent += '8'; operand2 = operand2*10 + 8; operatorFlag = 2; break;
-            case '9' : display.textContent += '9'; operand2 = operand2*10 + 9; operatorFlag = 2; break;
-            case '0' : display.textContent += '0'; operand2 = operand2*10 + 0; operatorFlag = 2; break;
-            case '.' : {
-                if (!dotFlag) {
-                    display.textContent += '.';
-                    dotFlag = 1;
-                }
-                break;
-            };
-            case '+': {
-                operand1 = operate(operand1, operator, operand2); display.textContent = operand1; operator = '+'; 
-                operatorFlag = 1; break;
-            }
-            case '-': {
-                operand1 = operate(operand1, operator, operand2); display.textContent = operand1; operator = '-'; 
-                operatorFlag = 1; break;
-            }
-            case '*': {
-                operand1 = operate(operand1, operator, operand2); display.textContent = operand1; operator = '*'; 
-                operatorFlag = 1; break;
-            }
-            case '/': {
-                operand1 = operate(operand1, operator, operand2); display.textContent = operand1; operator = '/'; 
-                operatorFlag = 1; break;
-            }
-            case 'Enter': {
-                operand1 = operate(operand1, operator, operand2); display.textContent = operand1; 
-                operatorFlag = 0; operand2 = 0; break;
-            }
+            case '1': operand2 = 1; ++stateFlag; break;
+            case '2': operand2 = 2; ++stateFlag; break;
+            case '3': operand2 = 3; ++stateFlag; break;
+            case '4': operand2 = 4; ++stateFlag; break;
+            case '5': operand2 = 5; ++stateFlag; break;
+            case '6': operand2 = 6; ++stateFlag; break;
+            case '7': operand2 = 7; ++stateFlag; break;
+            case '8': operand2 = 8; ++stateFlag; break;
+            case '9': operand2 = 9; ++stateFlag; break;
+            case '0': operand2 = 0; ++stateFlag; break;
+            case '+': 
+            case '-': 
+            case '*': 
+            case '/': operator = event.key; break;
         }
+        updateDisplay();
+    }
+    else if (stateFlag == 3) {
+        switch (event.key) {
+            case '1': operand2 = operand2*10 + 1; break;
+            case '2': operand2 = operand2*10 + 2; break;
+            case '3': operand2 = operand2*10 + 3; break;
+            case '4': operand2 = operand2*10 + 4; break;
+            case '5': operand2 = operand2*10 + 5; break;
+            case '6': operand2 = operand2*10 + 6; break;
+            case '7': operand2 = operand2*10 + 7; break;
+            case '8': operand2 = operand2*10 + 8; break;
+            case '9': operand2 = operand2*10 + 9; break;
+            case '0': operand2 = operand2*10 + 0; break;
+            case '+': 
+            case '-': 
+            case '*': 
+            case '/': operand1 = operate(operand1, operator, operand2); stateFlag = 2; operator = event.key; operand2 = 0; break;
+            case 'Enter': result = operate(operand1, operator, operand2); ++stateFlag; break;
+        }
+        updateDisplay();
+    }
+    else if (stateFlag == 4) {
+        switch (event.key) {
+            case '1': operand1 = 1; stateFlag = 1; break;
+            case '2': operand1 = 2; stateFlag = 1; break;
+            case '3': operand1 = 3; stateFlag = 1; break;
+            case '4': operand1 = 4; stateFlag = 1; break;
+            case '5': operand1 = 5; stateFlag = 1; break;
+            case '6': operand1 = 6; stateFlag = 1; break;
+            case '7': operand1 = 7; stateFlag = 1; break;
+            case '8': operand1 = 8; stateFlag = 1; break;
+            case '9': operand1 = 9; stateFlag = 1; break;
+            case '0': operand1 = 0; stateFlag = 1; break;
+            case '+': 
+            case '-': 
+            case '*': 
+            case '/': operand1 = result; operator = event.key; stateFlag = 2; break;
+        }
+        updateDisplay();
     }
 });
+
+function updateDisplay () {
+    switch (stateFlag) {
+        case 0: display.textContent = ""; secDisplay.textContent = ""; break;
+        case 1: display.textContent = operand1; secDisplay.textContent = ""; break;
+        case 2: display.textContent = operand1; secDisplay.textContent = `${operand1} ${operator}`; break;
+        case 3: display.textContent = operand2; secDisplay.textContent = `${operand1} ${operator}`; break;
+        case 4: display.textContent = result; secDisplay.textContent = `${operand1} ${operator} ${operand2} =`; break;
+    }
+}
