@@ -206,7 +206,7 @@ function updateDisplay () {
             case 1: display.textContent = operand1; secDisplay.textContent = ""; break;
             case 2: display.textContent = operand1; secDisplay.textContent = `${operand1} ${operator}`; break;
             case 3: display.textContent = operand2; secDisplay.textContent = `${operand1} ${operator}`; break;
-            case 4: display.textContent = result; secDisplay.textContent = `${operand1} ${operator} ${operand2} =`; break;
+            case 4: display.textContent = result; secDisplay.textContent = `${operand1} ${operator} ${operand2} = `; break;
         }
     }
 }
