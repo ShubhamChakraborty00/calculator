@@ -208,13 +208,33 @@ function updateDisplay () {
                     operand1 = +operand1.toString().slice(0,8);
                 }
                 display.textContent = operand1; secDisplay.textContent = ""; break;}
-            case 2: display.textContent = operand1; secDisplay.textContent = `${operand1} ${operator}`; break;
+            case 2: {
+                console.log(operand1);
+                if (operand1 > 99999999) {
+                    stateFlag = 5;
+                    display.textContent = "CRASH";
+                    secDisplay.textContent = "";
+                }
+                else  {
+                    display.textContent = operand1; secDisplay.textContent = `${operand1} ${operator}`;}
+                }
+                break;
             case 3: {
                 if (operand2 > 99999999) {
                     operand2 = +operand2.toString().slice(0, 8);
                 }
                 display.textContent = operand2; secDisplay.textContent = `${operand1} ${operator}`; break;}
-            case 4: display.textContent = result; secDisplay.textContent = `${operand1} ${operator} ${operand2} = `; break;
+            case 4: {
+                if (result > 99999999) {
+                    stateFlag = 5;
+                    display.textContent = "CRASH";
+                    secDisplay.textContent = "";
+                }
+                else {
+                    display.textContent = result; secDisplay.textContent = `${operand1} ${operator} ${operand2} = `;
+                }
+                break;
+            }
         }
     }
 }
