@@ -204,13 +204,13 @@ function updateDisplay () {
         switch (stateFlag) {
             case 0: display.textContent = ""; secDisplay.textContent = ""; break;
             case 1: {
-                if (operand1.toString().length > 8) {
+                if (operand1 > 99999999) {
                     operand1 = +operand1.toString().slice(0,8);
                 }
                 display.textContent = operand1; secDisplay.textContent = ""; break;}
             case 2: display.textContent = operand1; secDisplay.textContent = `${operand1} ${operator}`; break;
             case 3: {
-                if (operand2.toString().length > 8) {
+                if (operand2 > 99999999) {
                     operand2 = +operand2.toString().slice(0, 8);
                 }
                 display.textContent = operand2; secDisplay.textContent = `${operand1} ${operator}`; break;}
