@@ -195,7 +195,8 @@ document.addEventListener('keydown', (event) => {
 });
 
 function updateDisplay () {
-    if (operand1 == Infinity || operand1 == undefined || result == Infinity || result == undefined) {
+    if (operand1 == Infinity || operand1 == undefined || result == Infinity || result == undefined || operand1 !== operand1 || 
+        result !== result) {            // x !== x is used to check if x is NaN
         display.textContent = "ERROR";
         secDisplay.textContent = "";
         stateFlag = 5;
@@ -216,6 +217,12 @@ function updateDisplay () {
                     secDisplay.textContent = "";
                 }
                 else  {
+                    if (!Number.isInteger(operand1)) {
+                        let arr = operand1.toString().split('.');
+                        let length = arr[0].length;
+                        let exp = 8-length;
+                        operand1 = +(Math.round(operand1 + `e+${exp}`)  + `e-${exp}`);
+                    }
                     display.textContent = operand1; secDisplay.textContent = `${operand1} ${operator}`;}
                 }
                 break;
@@ -231,6 +238,12 @@ function updateDisplay () {
                     secDisplay.textContent = "";
                 }
                 else {
+                    if (!Number.isInteger(result)) {
+                        let arr = result.toString().split('.');
+                        let length = arr[0].length;
+                        let exp = 8-length;
+                        result = +(Math.round(result + `e+${exp}`)  + `e-${exp}`);
+                    }
                     display.textContent = result; secDisplay.textContent = `${operand1} ${operator} ${operand2} = `;
                 }
                 break;
@@ -238,13 +251,3 @@ function updateDisplay () {
         }
     }
 }
-
-// function roundOff (num) {
-//     if (Number.isInteger(num) && num.toString().length > 8) {
-//         exp = num.toString().length - 8;
-//         num = Math.ceil(+num / `1e+${exp}`) * `1e+${exp}`
-//         return +num.toString.slice(0, 7);
-//     }
-// }
-
-// num = +(Math.round(num + "e+6")  + "e-6");
