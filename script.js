@@ -203,10 +203,28 @@ function updateDisplay () {
     else {
         switch (stateFlag) {
             case 0: display.textContent = ""; secDisplay.textContent = ""; break;
-            case 1: display.textContent = operand1; secDisplay.textContent = ""; break;
+            case 1: {
+                if (operand1.toString().length > 8) {
+                    operand1 = +operand1.toString().slice(0,8);
+                }
+                display.textContent = operand1; secDisplay.textContent = ""; break;}
             case 2: display.textContent = operand1; secDisplay.textContent = `${operand1} ${operator}`; break;
-            case 3: display.textContent = operand2; secDisplay.textContent = `${operand1} ${operator}`; break;
+            case 3: {
+                if (operand2.toString().length > 8) {
+                    operand2 = +operand2.toString().slice(0, 8);
+                }
+                display.textContent = operand2; secDisplay.textContent = `${operand1} ${operator}`; break;}
             case 4: display.textContent = result; secDisplay.textContent = `${operand1} ${operator} ${operand2} = `; break;
         }
     }
 }
+
+// function roundOff (num) {
+//     if (Number.isInteger(num) && num.toString().length > 8) {
+//         exp = num.toString().length - 8;
+//         num = Math.ceil(+num / `1e+${exp}`) * `1e+${exp}`
+//         return +num.toString.slice(0, 7);
+//     }
+// }
+
+// num = +(Math.round(num + "e+6")  + "e-6");
