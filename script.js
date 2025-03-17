@@ -195,8 +195,8 @@ document.addEventListener('keydown', (event) => {
 });
 
 function updateDisplay () {
-    if (operand1 == Infinity || operand1 == undefined || result == Infinity || result == undefined || operand1 !== operand1 || 
-        result !== result) {            // x !== x is used to check if x is NaN
+    if (operand1 == Infinity || operand1 == undefined || result == Infinity || result == undefined || isNaN(operand1) || 
+    isNaN(result)) {            
         display.textContent = "ERROR";
         secDisplay.textContent = "";
         stateFlag = 5;
@@ -222,6 +222,12 @@ function updateDisplay () {
                         let length = arr[0].length;
                         let exp = 8-length;
                         operand1 = +(Math.round(operand1 + `e+${exp}`)  + `e-${exp}`);
+                        if (isNaN(operand1)) {
+                            display.textContent = "ERROR";
+                            secDisplay.textContent = "";
+                            stateFlag = 5;
+                            break;
+                        }
                     }
                     display.textContent = operand1; secDisplay.textContent = `${operand1} ${operator}`;}
                 }
@@ -243,6 +249,12 @@ function updateDisplay () {
                         let length = arr[0].length;
                         let exp = 8-length;
                         result = +(Math.round(result + `e+${exp}`)  + `e-${exp}`);
+                        if (isNaN(result)) {
+                            display.textContent = "ERROR";
+                            secDisplay.textContent = "";
+                            stateFlag = 5;
+                            break;
+                        }
                     }
                     display.textContent = result; secDisplay.textContent = `${operand1} ${operator} ${operand2} = `;
                 }
