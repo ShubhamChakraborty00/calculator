@@ -21,7 +21,7 @@ const clearBtn = document.querySelector("#clear");
 const display = document.querySelector(".display");
 const secDisplay = document.querySelector(".sec-display");
 
-let operand1 = 0, operand2 = 0, operator = '';
+let operand1 = '', operand2 = '', operator = '';
 
 let result = 0;
 let dotFlag = 0;
@@ -83,39 +83,40 @@ allButtonsList.forEach((element) => {
 
 document.addEventListener('keydown', (event) => {  
     if (event.key == 'Delete') {
-        result = operand1 = operand2 = stateFlag = 0;
+        result = operand1 = operand2 = '';
+        stateFlag = 0;
         operator = '';
         updateDisplay();
     }
     else if (stateFlag == 0) {
         switch (event.key) {
-            case '1' : operand1 = 1; ++stateFlag; break;
-            case '2' : operand1 = 2; ++stateFlag; break;
-            case '3' : operand1 = 3; ++stateFlag; break;
-            case '4' : operand1 = 4; ++stateFlag; break;
-            case '5' : operand1 = 5; ++stateFlag; break;
-            case '6' : operand1 = 6; ++stateFlag; break;
-            case '7' : operand1 = 7; ++stateFlag; break;
-            case '8' : operand1 = 8; ++stateFlag; break;
-            case '9' : operand1 = 9; ++stateFlag; break;
-            case '0' : operand1 = 0; ++stateFlag; break;
+            case '1' : operand1 += '1'; ++stateFlag; break;
+            case '2' : operand1 += '2'; ++stateFlag; break;
+            case '3' : operand1 += '3'; ++stateFlag; break;
+            case '4' : operand1 += '4'; ++stateFlag; break;
+            case '5' : operand1 += '5'; ++stateFlag; break;
+            case '6' : operand1 += '6'; ++stateFlag; break;
+            case '7' : operand1 += '7'; ++stateFlag; break;
+            case '8' : operand1 += '8'; ++stateFlag; break;
+            case '9' : operand1 += '9'; ++stateFlag; break;
+            case '0' : operand1 += '0'; ++stateFlag; break;
         };
         updateDisplay();
     }
     else if (stateFlag == 1) {
         switch (event.key) {
-            case '1' : operand1 = operand1*10 + 1; break;
-            case '2' : operand1 = operand1*10 + 2; break;
-            case '3' : operand1 = operand1*10 + 3; break;
-            case '4' : operand1 = operand1*10 + 4; break;
-            case '5' : operand1 = operand1*10 + 5; break;
-            case '6' : operand1 = operand1*10 + 6; break;
-            case '7' : operand1 = operand1*10 + 7; break;
-            case '8' : operand1 = operand1*10 + 8; break;
-            case '9' : operand1 = operand1*10 + 9; break;
-            case '0' : operand1 = operand1*10 + 0; break;
-            case '_': operand1 = -operand1; break;
-            case 'Backspace': operand1 = +operand1.toString().slice(0, -1); break;
+            case '1' : operand1 += '1'; break;
+            case '2' : operand1 += '2'; break;
+            case '3' : operand1 += '3'; break;
+            case '4' : operand1 += '4'; break;
+            case '5' : operand1 += '5'; break;
+            case '6' : operand1 += '6'; break;
+            case '7' : operand1 += '7'; break;
+            case '8' : operand1 += '8'; break;
+            case '9' : operand1 += '9'; break;
+            case '0' : operand1 += '0'; break;
+            case '_': operand1 = (-(+operand1)).toString(); break;
+            case 'Backspace': operand1 = operand1.slice(0, -1); break;
             case '+': 
             case '-': 
             case '*': 
@@ -125,16 +126,16 @@ document.addEventListener('keydown', (event) => {
     }
     else if (stateFlag == 2) {
         switch (event.key) {
-            case '1': operand2 = 1; ++stateFlag; break;
-            case '2': operand2 = 2; ++stateFlag; break;
-            case '3': operand2 = 3; ++stateFlag; break;
-            case '4': operand2 = 4; ++stateFlag; break;
-            case '5': operand2 = 5; ++stateFlag; break;
-            case '6': operand2 = 6; ++stateFlag; break;
-            case '7': operand2 = 7; ++stateFlag; break;
-            case '8': operand2 = 8; ++stateFlag; break;
-            case '9': operand2 = 9; ++stateFlag; break;
-            case '0': operand2 = 0; ++stateFlag; break;
+            case '1': operand2 += '1'; ++stateFlag; break;
+            case '2': operand2 += '2'; ++stateFlag; break;
+            case '3': operand2 += '3'; ++stateFlag; break;
+            case '4': operand2 += '4'; ++stateFlag; break;
+            case '5': operand2 += '5'; ++stateFlag; break;
+            case '6': operand2 += '6'; ++stateFlag; break;
+            case '7': operand2 += '7'; ++stateFlag; break;
+            case '8': operand2 += '8'; ++stateFlag; break;
+            case '9': operand2 += '9'; ++stateFlag; break;
+            case '0': operand2 += '0'; ++stateFlag; break;
             case '+': 
             case '-': 
             case '*': 
@@ -144,40 +145,40 @@ document.addEventListener('keydown', (event) => {
     }
     else if (stateFlag == 3) {
         switch (event.key) {
-            case '1': operand2 = operand2*10 + 1; break;
-            case '2': operand2 = operand2*10 + 2; break;
-            case '3': operand2 = operand2*10 + 3; break;
-            case '4': operand2 = operand2*10 + 4; break;
-            case '5': operand2 = operand2*10 + 5; break;
-            case '6': operand2 = operand2*10 + 6; break;
-            case '7': operand2 = operand2*10 + 7; break;
-            case '8': operand2 = operand2*10 + 8; break;
-            case '9': operand2 = operand2*10 + 9; break;
-            case '0': operand2 = operand2*10 + 0; break;
-            case '_': operand2 = -operand2; break;
-            case 'Backspace': operand2 = +operand2.toString().slice(0, -1); break;
+            case '1': operand2 += '1'; break;
+            case '2': operand2 += '2'; break;
+            case '3': operand2 += '3'; break;
+            case '4': operand2 += '4'; break;
+            case '5': operand2 += '5'; break;
+            case '6': operand2 += '6'; break;
+            case '7': operand2 += '7'; break;
+            case '8': operand2 += '8'; break;
+            case '9': operand2 += '9'; break;
+            case '0': operand2 += '0'; break;
+            case '_': operand2 = (-(+operand2)).toString(); break;
+            case 'Backspace': operand2 = operand2.slice(0, -1); break;
             case '+': 
             case '-': 
             case '*': 
-            case '/': operand1 = operate(operand1, operator, operand2); stateFlag = 2; operator = event.key; operand2 = 0; break;
-            case 'Enter': result = operate(operand1, operator, operand2); ++stateFlag; break;
+            case '/': operand1 = operate(+operand1, operator, +operand2).toString(); stateFlag = 2; operator = event.key; operand2 = ''; break;
+            case 'Enter': result = operate(+operand1, operator, +operand2).toString(); ++stateFlag; break;
         }
         updateDisplay();
     }
     else if (stateFlag == 4) {
         switch (event.key) {
-            case '1': operand1 = 1; stateFlag = 1; break;
-            case '2': operand1 = 2; stateFlag = 1; break;
-            case '3': operand1 = 3; stateFlag = 1; break;
-            case '4': operand1 = 4; stateFlag = 1; break;
-            case '5': operand1 = 5; stateFlag = 1; break;
-            case '6': operand1 = 6; stateFlag = 1; break;
-            case '7': operand1 = 7; stateFlag = 1; break;
-            case '8': operand1 = 8; stateFlag = 1; break;
-            case '9': operand1 = 9; stateFlag = 1; break;
-            case '0': operand1 = 0; stateFlag = 1; break;
-            case '_': operand1 = -result; stateFlag = 1; break;
-            case 'Backspace': operand1 = +result.toString().slice(0, -1); stateFlag = 1; break;
+            case '1': operand1 += '1'; stateFlag = 1; break;
+            case '2': operand1 += '2'; stateFlag = 1; break;
+            case '3': operand1 += '3'; stateFlag = 1; break;
+            case '4': operand1 += '4'; stateFlag = 1; break;
+            case '5': operand1 += '5'; stateFlag = 1; break;
+            case '6': operand1 += '6'; stateFlag = 1; break;
+            case '7': operand1 += '7'; stateFlag = 1; break;
+            case '8': operand1 += '8'; stateFlag = 1; break;
+            case '9': operand1 += '9'; stateFlag = 1; break;
+            case '0': operand1 += '0'; stateFlag = 1; break;
+            case '_': operand1 = (-(+operand1)).toString; stateFlag = 1; break;
+            case 'Backspace': operand1 = result.slice(0, -1); stateFlag = 1; operand2 = ""; break;
             case '+': 
             case '-': 
             case '*': 
@@ -187,24 +188,24 @@ document.addEventListener('keydown', (event) => {
     }
     else if (stateFlag == 5) {
         switch (event.key) {
-            case '1': operand1 = 1; stateFlag = 1; result = 0; break;
-            case '2': operand1 = 2; stateFlag = 1; result = 0; break;
-            case '3': operand1 = 3; stateFlag = 1; result = 0; break;
-            case '4': operand1 = 4; stateFlag = 1; result = 0; break;
-            case '5': operand1 = 5; stateFlag = 1; result = 0; break;
-            case '6': operand1 = 6; stateFlag = 1; result = 0; break;
-            case '7': operand1 = 7; stateFlag = 1; result = 0; break;
-            case '8': operand1 = 8; stateFlag = 1; result = 0; break;
-            case '9': operand1 = 9; stateFlag = 1; result = 0; break;
-            case '0': operand1 = 0; stateFlag = 1; result = 0; break;
+            case '1': operand1 += '1'; stateFlag = 1; result = ''; break;
+            case '2': operand1 += '2'; stateFlag = 1; result = ''; break;
+            case '3': operand1 += '3'; stateFlag = 1; result = ''; break;
+            case '4': operand1 += '4'; stateFlag = 1; result = ''; break;
+            case '5': operand1 += '5'; stateFlag = 1; result = ''; break;
+            case '6': operand1 += '6'; stateFlag = 1; result = ''; break;
+            case '7': operand1 += '7'; stateFlag = 1; result = ''; break;
+            case '8': operand1 += '8'; stateFlag = 1; result = ''; break;
+            case '9': operand1 += '9'; stateFlag = 1; result = ''; break;
+            case '0': operand1 += '0'; stateFlag = 1; result = ''; break;
         }
         updateDisplay();
     }
 });
 
 function updateDisplay () {
-    if (operand1 == Infinity || operand1 == undefined || result == Infinity || result == undefined || isNaN(operand1) || 
-    isNaN(result)) {            
+    if (+operand1 == Infinity || +operand1 == undefined || +result == Infinity || +result == undefined || isNaN(+operand1) || 
+    isNaN(+result)) {            
         display.textContent = "ERROR";
         secDisplay.textContent = "";
         stateFlag = 5;
@@ -213,56 +214,59 @@ function updateDisplay () {
         switch (stateFlag) {
             case 0: display.textContent = ""; secDisplay.textContent = ""; break;
             case 1: {
-                if (operand1 > 99999999) {
-                    operand1 = +operand1.toString().slice(0,8);
+                if (operand1.length > 8) {
+                    operand1 = operand1.slice(0,8);
                 }
                 display.textContent = operand1; secDisplay.textContent = ""; break;}
             case 2: {
-                if (operand1 > 99999999) {
+                if (operand1.includes('.')) {
+                    let arr = operand1.split('.');
+                    let length = arr[0].length;
+                    let exp = 8-length;
+                    operand1 = (+(Math.round(+operand1 + `e+${exp}`)  + `e-${exp}`)).toString();
+                    if (isNaN(+operand1)) {
+                        display.textContent = "ERROR";
+                        secDisplay.textContent = "";
+                        stateFlag = 5;
+                        break;
+                    }
+                    display.textContent = operand1; secDisplay.textContent = `${operand1} ${operator}`;
+                }
+                else if (operand1.length > 8) {
                     stateFlag = 5;
                     display.textContent = "CRASH";
                     secDisplay.textContent = "";
                 }
                 else  {
-                    if (!Number.isInteger(operand1)) {
-                        let arr = operand1.toString().split('.');
-                        let length = arr[0].length;
-                        let exp = 8-length;
-                        operand1 = +(Math.round(operand1 + `e+${exp}`)  + `e-${exp}`);
-                        if (isNaN(operand1)) {
-                            display.textContent = "ERROR";
-                            secDisplay.textContent = "";
-                            stateFlag = 5;
-                            break;
-                        }
-                    }
-                    display.textContent = operand1; secDisplay.textContent = `${operand1} ${operator}`;}
+                    display.textContent = operand1; secDisplay.textContent = `${operand1} ${operator}`;
                 }
                 break;
+            }
             case 3: {
-                if (operand2 > 99999999) {
-                    operand2 = +operand2.toString().slice(0, 8);
+                if (operand2.length > 8) {
+                    operand2 = operand2.slice(0, 8);
                 }
                 display.textContent = operand2; secDisplay.textContent = `${operand1} ${operator}`; break;}
             case 4: {
-                if (result > 99999999) {
+                if (result.includes('.')) {
+                    let arr = result.split('.');
+                    let length = arr[0].length;
+                    let exp = 8-length;
+                    result = (+(Math.round(result + `e+${exp}`)  + `e-${exp}`)).toString();
+                    if (isNaN(+result)) {
+                        display.textContent = "ERROR";
+                        secDisplay.textContent = "";
+                        stateFlag = 5;
+                        break;
+                    }
+                    display.textContent = result; secDisplay.textContent = `${operand1} ${operator} ${operand2} = `;
+                }
+                else if (result.length > 8) {
                     stateFlag = 5;
                     display.textContent = "CRASH";
                     secDisplay.textContent = "";
                 }
                 else {
-                    if (!Number.isInteger(result)) {
-                        let arr = result.toString().split('.');
-                        let length = arr[0].length;
-                        let exp = 8-length;
-                        result = +(Math.round(result + `e+${exp}`)  + `e-${exp}`);
-                        if (isNaN(result)) {
-                            display.textContent = "ERROR";
-                            secDisplay.textContent = "";
-                            stateFlag = 5;
-                            break;
-                        }
-                    }
                     display.textContent = result; secDisplay.textContent = `${operand1} ${operator} ${operand2} = `;
                 }
                 break;
