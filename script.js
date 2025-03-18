@@ -73,7 +73,6 @@ allButtonsList.forEach((element) => {
             case 'equals': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : 'Enter'}));  break;
             case 'clear': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : 'Delete'})); break;
             case 'plus-minus': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '_'})); break;
-            case 'backspace': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : 'Backspace'})); break;
         }
     })
 })
@@ -115,7 +114,6 @@ document.addEventListener('keydown', (event) => {
             case '9' : operand1 = operand1*10 + 9; break;
             case '0' : operand1 = operand1*10 + 0; break;
             case '_': operand1 = -operand1; break;
-            case 'Backspace': operand1 = +operand1.toString().slice(0, -1); break;
             case '+': 
             case '-': 
             case '*': 
@@ -155,7 +153,6 @@ document.addEventListener('keydown', (event) => {
             case '9': operand2 = operand2*10 + 9; break;
             case '0': operand2 = operand2*10 + 0; break;
             case '_': operand2 = -operand2; break;
-            case 'Backspace': operand2 = +operand2.toString().slice(0, -1); break;
             case '+': 
             case '-': 
             case '*': 
@@ -177,7 +174,6 @@ document.addEventListener('keydown', (event) => {
             case '9': operand1 = 9; stateFlag = 1; break;
             case '0': operand1 = 0; stateFlag = 1; break;
             case '_': operand1 = -result; stateFlag = 1; break;
-            case 'Backspace': operand1 = +result.toString().slice(0, -1); stateFlag = 1; break;
             case '+': 
             case '-': 
             case '*': 
