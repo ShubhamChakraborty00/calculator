@@ -72,6 +72,7 @@ allButtonsList.forEach((element) => {
             case 'divide': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '/'}));  break;
             case 'equals': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : 'Enter'}));  break;
             case 'clear': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : 'Delete'})); break;
+            case 'plus-minus': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '_'})); break;
         }
     })
 })
@@ -112,6 +113,7 @@ document.addEventListener('keydown', (event) => {
             case '8' : operand1 = operand1*10 + 8; break;
             case '9' : operand1 = operand1*10 + 9; break;
             case '0' : operand1 = operand1*10 + 0; break;
+            case '_': operand1 = -operand1; break;
             case '+': 
             case '-': 
             case '*': 
@@ -150,6 +152,7 @@ document.addEventListener('keydown', (event) => {
             case '8': operand2 = operand2*10 + 8; break;
             case '9': operand2 = operand2*10 + 9; break;
             case '0': operand2 = operand2*10 + 0; break;
+            case '_': operand2 = -operand2; break;
             case '+': 
             case '-': 
             case '*': 
@@ -170,6 +173,7 @@ document.addEventListener('keydown', (event) => {
             case '8': operand1 = 8; stateFlag = 1; break;
             case '9': operand1 = 9; stateFlag = 1; break;
             case '0': operand1 = 0; stateFlag = 1; break;
+            case '_': operand1 = -result; stateFlag = 1; break;
             case '+': 
             case '-': 
             case '*': 
@@ -210,7 +214,6 @@ function updateDisplay () {
                 }
                 display.textContent = operand1; secDisplay.textContent = ""; break;}
             case 2: {
-                console.log(operand1);
                 if (operand1 > 99999999) {
                     stateFlag = 5;
                     display.textContent = "CRASH";
