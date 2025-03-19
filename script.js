@@ -24,7 +24,8 @@ const secDisplay = document.querySelector(".sec-display");
 let operand1 = '', operand2 = '', operator = '';
 
 let result = 0;
-let dotFlag = 0;
+let dotFlag1 = 0;        //either zero or one
+let dotFlag2 = 0;        //two dotflags for two operands
 let stateFlag = 0;
 
 /* stateFlag marks the current state of the calculator, there are 6 total states : 0, 1, 2, 3, 4, 5
@@ -74,6 +75,7 @@ allButtonsList.forEach((element) => {
             case 'clear': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : 'Delete'})); break;
             case 'plus-minus': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '_'})); break;
             case 'backspace': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : 'Backspace'})); break;
+            case 'dot': document.dispatchEvent(new KeyboardEvent('keydown', {'key' : '.'})); break;
         }
     })
 })
@@ -85,6 +87,8 @@ document.addEventListener('keydown', (event) => {
     if (event.key == 'Delete') {
         result = operand1 = operand2 = '';
         stateFlag = 0;
+        dotFlag1 = 0;
+        dotFlag2 = 0;
         operator = '';
         updateDisplay();
     }
@@ -100,6 +104,7 @@ document.addEventListener('keydown', (event) => {
             case '8' : operand1 += '8'; ++stateFlag; break;
             case '9' : operand1 += '9'; ++stateFlag; break;
             case '0' : operand1 += '0'; ++stateFlag; break;
+            case '.' : operand1 += '0.'; ++stateFlag; dotFlag1 = 1; break;
         };
         updateDisplay();
     }
@@ -117,6 +122,13 @@ document.addEventListener('keydown', (event) => {
             case '0' : operand1 += '0'; break;
             case '_': operand1 = (-(+operand1)).toString(); break;
             case 'Backspace': operand1 = operand1.slice(0, -1); break;
+            case '.': {
+                if (dotFlag1 == 0) {
+                    operand1 += '.';
+                    dotFlag1 = 1;
+                }
+                break;
+            }
             case '+': 
             case '-': 
             case '*': 
@@ -136,6 +148,7 @@ document.addEventListener('keydown', (event) => {
             case '8': operand2 += '8'; ++stateFlag; break;
             case '9': operand2 += '9'; ++stateFlag; break;
             case '0': operand2 += '0'; ++stateFlag; break;
+            case '.' : operand2 += '0.'; ++stateFlag; dotFlag2 = 1; break;
             case '+': 
             case '-': 
             case '*': 
@@ -157,11 +170,23 @@ document.addEventListener('keydown', (event) => {
             case '0': operand2 += '0'; break;
             case '_': operand2 = (-(+operand2)).toString(); break;
             case 'Backspace': operand2 = operand2.slice(0, -1); break;
+            case '.': {
+                if (dotFlag2 == 0) {
+                    operand2 += '.';
+                    dotFlag2 = 1;
+                }
+                break;
+            }
             case '+': 
             case '-': 
             case '*': 
-            case '/': operand1 = operate(+operand1, operator, +operand2).toString(); stateFlag = 2; operator = event.key; operand2 = ''; break;
-            case 'Enter': result = operate(+operand1, operator, +operand2).toString(); ++stateFlag; break;
+            case '/': {
+                operand1 = operate(+operand1, operator, +operand2).toString(); stateFlag = 2; operator = event.key; 
+                operand2 = ''; dotFlag1 = 0, dotFlag2 = 0; break;}
+            case 'Enter': {
+                result = operate(+operand1, operator, +operand2).toString(); ++stateFlag; dotFlag1 = 0, dotFlag2 = 0; 
+            break;
+            }
         }
         updateDisplay();
     }
@@ -179,6 +204,7 @@ document.addEventListener('keydown', (event) => {
             case '0': operand1 += '0'; stateFlag = 1; break;
             case '_': operand1 = (-(+operand1)).toString; stateFlag = 1; break;
             case 'Backspace': operand1 = result.slice(0, -1); stateFlag = 1; operand2 = ""; break;
+            case '.' : operand1 += '0.'; stateFlag = 1; dotFlag1 = 1; break;
             case '+': 
             case '-': 
             case '*': 
@@ -198,6 +224,7 @@ document.addEventListener('keydown', (event) => {
             case '8': operand1 += '8'; stateFlag = 1; result = ''; break;
             case '9': operand1 += '9'; stateFlag = 1; result = ''; break;
             case '0': operand1 += '0'; stateFlag = 1; result = ''; break;
+            case '.' : operand1 += '0.'; stateFlag = 1; dotFlag1 = 1; break;
         }
         updateDisplay();
     }
