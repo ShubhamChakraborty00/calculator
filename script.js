@@ -121,7 +121,11 @@ document.addEventListener('keydown', (event) => {
             case '9' : operand1 += '9'; break;
             case '0' : operand1 += '0'; break;
             case '_': operand1 = (-(+operand1)).toString(); break;
-            case 'Backspace': operand1 = operand1.slice(0, -1); break;
+            case 'Backspace': {
+                if (operand1.at(-1) == '.') {
+                    dotFlag1 = 0;
+                }
+                operand1 = operand1.slice(0, -1); break;}
             case '.': {
                 if (dotFlag1 == 0) {
                     operand1 += '.';
@@ -169,7 +173,12 @@ document.addEventListener('keydown', (event) => {
             case '9': operand2 += '9'; break;
             case '0': operand2 += '0'; break;
             case '_': operand2 = (-(+operand2)).toString(); break;
-            case 'Backspace': operand2 = operand2.slice(0, -1); break;
+            case 'Backspace': {
+                if (operand2.at(-1) == '.') {
+                    dotFlag2 = 0;
+                }
+                operand2 = operand2.slice(0, -1); break;
+            }
             case '.': {
                 if (dotFlag2 == 0) {
                     operand2 += '.';
