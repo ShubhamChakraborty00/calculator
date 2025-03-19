@@ -94,17 +94,17 @@ document.addEventListener('keydown', (event) => {
     }
     else if (stateFlag == 0) {
         switch (event.key) {
-            case '1' : operand1 += '1'; ++stateFlag; break;
-            case '2' : operand1 += '2'; ++stateFlag; break;
-            case '3' : operand1 += '3'; ++stateFlag; break;
-            case '4' : operand1 += '4'; ++stateFlag; break;
-            case '5' : operand1 += '5'; ++stateFlag; break;
-            case '6' : operand1 += '6'; ++stateFlag; break;
-            case '7' : operand1 += '7'; ++stateFlag; break;
-            case '8' : operand1 += '8'; ++stateFlag; break;
-            case '9' : operand1 += '9'; ++stateFlag; break;
-            case '0' : operand1 += '0'; ++stateFlag; break;
-            case '.' : operand1 += '0.'; ++stateFlag; dotFlag1 = 1; break;
+            case '1' : operand1 = '1'; ++stateFlag; break;
+            case '2' : operand1 = '2'; ++stateFlag; break;
+            case '3' : operand1 = '3'; ++stateFlag; break;
+            case '4' : operand1 = '4'; ++stateFlag; break;
+            case '5' : operand1 = '5'; ++stateFlag; break;
+            case '6' : operand1 = '6'; ++stateFlag; break;
+            case '7' : operand1 = '7'; ++stateFlag; break;
+            case '8' : operand1 = '8'; ++stateFlag; break;
+            case '9' : operand1 = '9'; ++stateFlag; break;
+            case '0' : operand1 = '0'; ++stateFlag; break;
+            case '.' : operand1 = '0.'; ++stateFlag; dotFlag1 = 1; break;
         };
         updateDisplay();
     }
@@ -142,17 +142,17 @@ document.addEventListener('keydown', (event) => {
     }
     else if (stateFlag == 2) {
         switch (event.key) {
-            case '1': operand2 += '1'; ++stateFlag; break;
-            case '2': operand2 += '2'; ++stateFlag; break;
-            case '3': operand2 += '3'; ++stateFlag; break;
-            case '4': operand2 += '4'; ++stateFlag; break;
-            case '5': operand2 += '5'; ++stateFlag; break;
-            case '6': operand2 += '6'; ++stateFlag; break;
-            case '7': operand2 += '7'; ++stateFlag; break;
-            case '8': operand2 += '8'; ++stateFlag; break;
-            case '9': operand2 += '9'; ++stateFlag; break;
-            case '0': operand2 += '0'; ++stateFlag; break;
-            case '.' : operand2 += '0.'; ++stateFlag; dotFlag2 = 1; break;
+            case '1': operand2 = '1'; ++stateFlag; break;
+            case '2': operand2 = '2'; ++stateFlag; break;
+            case '3': operand2 = '3'; ++stateFlag; break;
+            case '4': operand2 = '4'; ++stateFlag; break;
+            case '5': operand2 = '5'; ++stateFlag; break;
+            case '6': operand2 = '6'; ++stateFlag; break;
+            case '7': operand2 = '7'; ++stateFlag; break;
+            case '8': operand2 = '8'; ++stateFlag; break;
+            case '9': operand2 = '9'; ++stateFlag; break;
+            case '0': operand2 = '0'; ++stateFlag; break;
+            case '.' : operand2 = '0.'; ++stateFlag; dotFlag2 = 1; break;
             case '+': 
             case '-': 
             case '*': 
@@ -193,27 +193,27 @@ document.addEventListener('keydown', (event) => {
                 operand1 = operate(+operand1, operator, +operand2).toString(); stateFlag = 2; operator = event.key; 
                 operand2 = ''; dotFlag1 = 0, dotFlag2 = 0; break;}
             case 'Enter': {
-                result = operate(+operand1, operator, +operand2).toString(); ++stateFlag; dotFlag1 = 0, dotFlag2 = 0; 
-            break;
+                result = operate(+operand1, operator, +operand2).toString(); ++stateFlag; dotFlag1 = 0, dotFlag2 = 0;
+                break;
             }
         }
         updateDisplay();
     }
     else if (stateFlag == 4) {
         switch (event.key) {
-            case '1': operand1 += '1'; stateFlag = 1; break;
-            case '2': operand1 += '2'; stateFlag = 1; break;
-            case '3': operand1 += '3'; stateFlag = 1; break;
-            case '4': operand1 += '4'; stateFlag = 1; break;
-            case '5': operand1 += '5'; stateFlag = 1; break;
-            case '6': operand1 += '6'; stateFlag = 1; break;
-            case '7': operand1 += '7'; stateFlag = 1; break;
-            case '8': operand1 += '8'; stateFlag = 1; break;
-            case '9': operand1 += '9'; stateFlag = 1; break;
-            case '0': operand1 += '0'; stateFlag = 1; break;
+            case '1': operand1 = '1'; stateFlag = 1; break;
+            case '2': operand1 = '2'; stateFlag = 1; break;
+            case '3': operand1 = '3'; stateFlag = 1; break;
+            case '4': operand1 = '4'; stateFlag = 1; break;
+            case '5': operand1 = '5'; stateFlag = 1; break;
+            case '6': operand1 = '6'; stateFlag = 1; break;
+            case '7': operand1 = '7'; stateFlag = 1; break;
+            case '8': operand1 = '8'; stateFlag = 1; break;
+            case '9': operand1 = '9'; stateFlag = 1; break;
+            case '0': operand1 = '0'; stateFlag = 1; break;
             case '_': operand1 = (-(+operand1)).toString; stateFlag = 1; break;
             case 'Backspace': operand1 = result.slice(0, -1); stateFlag = 1; operand2 = ""; break;
-            case '.' : operand1 += '0.'; stateFlag = 1; dotFlag1 = 1; break;
+            case '.' : operand1 = '0.'; stateFlag = 1; dotFlag1 = 1; break;
             case '+': 
             case '-': 
             case '*': 
@@ -223,17 +223,17 @@ document.addEventListener('keydown', (event) => {
     }
     else if (stateFlag == 5) {
         switch (event.key) {
-            case '1': operand1 += '1'; stateFlag = 1; result = ''; break;
-            case '2': operand1 += '2'; stateFlag = 1; result = ''; break;
-            case '3': operand1 += '3'; stateFlag = 1; result = ''; break;
-            case '4': operand1 += '4'; stateFlag = 1; result = ''; break;
-            case '5': operand1 += '5'; stateFlag = 1; result = ''; break;
-            case '6': operand1 += '6'; stateFlag = 1; result = ''; break;
-            case '7': operand1 += '7'; stateFlag = 1; result = ''; break;
-            case '8': operand1 += '8'; stateFlag = 1; result = ''; break;
-            case '9': operand1 += '9'; stateFlag = 1; result = ''; break;
-            case '0': operand1 += '0'; stateFlag = 1; result = ''; break;
-            case '.' : operand1 += '0.'; stateFlag = 1; dotFlag1 = 1; break;
+            case '1': operand1 = '1'; stateFlag = 1; result = ''; break;
+            case '2': operand1 = '2'; stateFlag = 1; result = ''; break;
+            case '3': operand1 = '3'; stateFlag = 1; result = ''; break;
+            case '4': operand1 = '4'; stateFlag = 1; result = ''; break;
+            case '5': operand1 = '5'; stateFlag = 1; result = ''; break;
+            case '6': operand1 = '6'; stateFlag = 1; result = ''; break;
+            case '7': operand1 = '7'; stateFlag = 1; result = ''; break;
+            case '8': operand1 = '8'; stateFlag = 1; result = ''; break;
+            case '9': operand1 = '9'; stateFlag = 1; result = ''; break;
+            case '0': operand1 = '0'; stateFlag = 1; result = ''; break;
+            case '.' : operand1 = '0.'; stateFlag = 1; dotFlag1 = 1; break;
         }
         updateDisplay();
     }
